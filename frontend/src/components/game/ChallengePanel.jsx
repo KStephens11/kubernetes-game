@@ -67,7 +67,7 @@ export const ChallengePanel = ({ challenge, totalChallenges, challengeIndex, val
                   className={`challenge-panel__criterion${met ? ' challenge-panel__criterion--met' : ''}`}
                 >
                   <span className="criterion-icon">{met ? '✓' : '○'}</span>
-                  <span>{c.type}{c.name ? `: ${c.name}` : ''}</span>
+                  <span>{describeCriterion(c)}</span>
                 </li>
               );
             })}
@@ -101,5 +101,26 @@ ChallengePanel.defaultProps = {
   totalChallenges: 15,
   challengeIndex: 0,
 };
+
+function describeCriterion(c) {
+  const name = c.name ? `"${c.name}"` : '';
+  switch (c.type) {
+    case 'pod_exists':        return `Pod ${name} exists`;
+    case 'pod_not_exists':    return `Pod ${name} has been deleted`;
+    case 'pod_running':       return `Pod ${name} is Running`;
+    case 'pod_status':        return `Pod ${name} is ${c.status || 'Running'}`;
+    case 'pod_has_env_from_configmap': return `Pod ${name} uses ConfigMap "${c.configmap}"`;
+    case 'deployment_exists': return `Deployment ${name} exists`;
+    case 'deployment_ready':  return `Deployment ${name} has ${c.replicas || 'all'} replicas ready`;
+    case 'deployment_image':  return `Deployment ${name} uses image "${c.image}"`;
+    case 'service_exists':    return `Service ${name} exists`;
+    case 'service_selector':  return `Service ${name} routes to "${c.selector}" pods`;
+    case 'service_has_endpoints': return `Service ${name} has healthy endpoints`;
+    case 'configmap_exists':  return `ConfigMap ${name} exists`;
+    case 'secret_exists':     return `Secret ${name} exists`;
+    case 'command_executed':  return `Run kubectl ${c.command} on a ${c.resource}`;
+    default:                  return c.type + (c.name ? `: ${c.name}` : '');
+  }
+}
 
 export default ChallengePanel;

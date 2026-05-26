@@ -67,14 +67,16 @@ public class ValidationService {
                     case "service_exists"          -> checkServiceExists(namespace, name);
                     case "service_selector"        -> checkServiceSelector(namespace, name, criterion);
                     case "service_has_endpoints"   -> checkServiceHasEndpoints(namespace, name);
+                    case "deployment_exists"       -> checkDeploymentExists(namespace, name);
                     case "deployment_ready"        -> checkDeploymentReady(namespace, name, criterion);
+                    case "deployment_image"        -> checkDeploymentImage(namespace, name, criterion);
                     case "configmap_exists"        -> checkConfigMapExists(namespace, name);
                     case "secret_exists"           -> checkSecretExists(namespace, name);
                     case "pod_has_env_from_configmap" -> checkPodHasEnvFromConfigMap(namespace, name, criterion);
-                    case "command_executed"        -> true; // tracked client-side; always passes server validation
+                    case "command_executed"        -> true;
                     default -> {
                         logger.warn("Unknown criterion type: {}", type);
-                        yield true; // unknown criteria are skipped
+                        yield true;
                     }
                 };
 
