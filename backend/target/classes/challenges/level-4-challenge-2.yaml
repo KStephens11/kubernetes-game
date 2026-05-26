@@ -1,0 +1,56 @@
+challenge_id: "config-02"
+level: 4
+order: 2
+title: "Use ConfigMap in a Pod"
+difficulty: "intermediate"
+estimated_time: 10
+
+story_context: |
+  The ConfigMap is ready, but the application pod isn't using it yet.
+  Create a pod that reads its configuration from the ConfigMap as environment variables.
+
+learning_objectives:
+  - Inject ConfigMap data as environment variables
+  - Use envFrom in pod spec
+  - Understand configuration injection patterns
+
+initial_state:
+  resources:
+    - type: "configmap"
+      name: "app-config"
+      data:
+        DB_HOST: "db-service"
+        APP_PORT: "8080"
+
+success_criteria:
+  - type: "pod_exists"
+    name: "app-pod"
+  - type: "pod_running"
+    name: "app-pod"
+  - type: "pod_has_env_from_configmap"
+    name: "app-pod"
+    configmap: "app-config"
+
+hints:
+  - level: 1
+    text: "Create a pod that uses envFrom to load all keys from a ConfigMap"
+  - level: 2
+    text: "Apply a YAML manifest with envFrom.configMapRef pointing to app-config"
+  - level: 3
+    text: |
+      kubectl apply -f - <<EOF
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: app-pod
+      spec:
+        containers:
+        - name: app
+          image: nginx
+          envFrom:
+          - configMapRef:
+              name: app-config
+      EOF
+
+validation_timeout: 60
+max_hints: 3

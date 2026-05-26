@@ -1,0 +1,38 @@
+challenge_id: "deployment-basics-02"
+level: 2
+order: 2
+title: "Scale a Deployment"
+difficulty: "intermediate"
+estimated_time: 5
+
+story_context: |
+  Traffic to the web application is increasing rapidly.
+  Scale the deployment to 5 replicas to handle the additional load.
+
+learning_objectives:
+  - Scale deployments
+  - Use kubectl scale command
+  - Understand horizontal scaling
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx"
+      replicas: 3
+
+success_criteria:
+  - type: "deployment_ready"
+    name: "web-app"
+    replicas: 5
+
+hints:
+  - level: 1
+    text: "Use 'kubectl scale' to change replica count"
+  - level: 2
+    text: "Try: kubectl scale deployment web-app --replicas=5"
+  - level: 3
+    text: "Verify with: kubectl get deployment web-app"
+
+validation_timeout: 45
+max_hints: 3

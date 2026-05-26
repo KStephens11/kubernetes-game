@@ -1,0 +1,44 @@
+challenge_id: "debug-03"
+level: 5
+order: 3
+title: "Fix Resource Limits"
+difficulty: "advanced"
+estimated_time: 12
+
+story_context: |
+  A pod keeps failing to schedule because its resource requests exceed the namespace quota.
+  Adjust the resource requests so the pod can run within the allowed limits.
+
+learning_objectives:
+  - Understand resource requests and limits
+  - Diagnose scheduling failures
+  - Fix resource configuration to fit quota
+
+initial_state:
+  resources:
+    - type: "pod"
+      name: "heavy-pod"
+      image: "nginx"
+      resources:
+        requests:
+          cpu: "10"
+          memory: "20Gi"
+
+success_criteria:
+  - type: "pod_not_exists"
+    name: "heavy-pod"
+  - type: "pod_exists"
+    name: "light-pod"
+  - type: "pod_running"
+    name: "light-pod"
+
+hints:
+  - level: 1
+    text: "Check why the pod is not scheduling: kubectl describe pod heavy-pod"
+  - level: 2
+    text: "Delete the over-resourced pod: kubectl delete pod heavy-pod"
+  - level: 3
+    text: "Create a pod with reasonable resources: kubectl run light-pod --image=nginx --requests='cpu=100m,memory=128Mi'"
+
+validation_timeout: 60
+max_hints: 3

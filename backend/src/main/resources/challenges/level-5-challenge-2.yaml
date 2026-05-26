@@ -1,0 +1,46 @@
+challenge_id: "debug-02"
+level: 5
+order: 2
+title: "Fix a Broken Service"
+difficulty: "advanced"
+estimated_time: 10
+
+story_context: |
+  The web application is running but the service has no endpoints.
+  Traffic cannot reach the pods. Investigate and fix the selector mismatch.
+
+learning_objectives:
+  - Diagnose service selector mismatches
+  - Inspect service and pod labels
+  - Fix service configuration
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx"
+      replicas: 2
+    - type: "service"
+      name: "web-app-svc"
+      selector: "wrong-selector"
+      port: 80
+
+success_criteria:
+  - type: "service_exists"
+    name: "web-app-svc"
+  - type: "service_selector"
+    name: "web-app-svc"
+    selector: "web-app"
+  - type: "service_has_endpoints"
+    name: "web-app-svc"
+
+hints:
+  - level: 1
+    text: "Check why the service has no endpoints: kubectl get endpoints web-app-svc"
+  - level: 2
+    text: "Compare the service selector with pod labels: kubectl describe service web-app-svc"
+  - level: 3
+    text: "Patch the selector: kubectl patch service web-app-svc -p '{\"spec\":{\"selector\":{\"app\":\"web-app\"}}}'"
+
+validation_timeout: 60
+max_hints: 3

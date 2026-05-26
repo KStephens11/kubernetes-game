@@ -1,0 +1,41 @@
+challenge_id: "pod-basics-03"
+level: 1
+order: 3
+title: "Replace a Pod"
+difficulty: "beginner"
+estimated_time: 5
+
+story_context: |
+  The monitoring pod needs to be replaced with an updated version.
+  Delete the old pod and create a new one with a different name.
+
+learning_objectives:
+  - Delete pods with kubectl delete
+  - Understand pod lifecycle
+  - Create replacement pods
+
+initial_state:
+  resources:
+    - type: "pod"
+      name: "life-support-monitor"
+      image: "nginx"
+
+success_criteria:
+  - type: "pod_not_exists"
+    name: "life-support-monitor"
+  - type: "pod_exists"
+    name: "life-support-v2"
+  - type: "pod_status"
+    name: "life-support-v2"
+    status: "Running"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl delete' to remove the old pod"
+  - level: 2
+    text: "Delete: kubectl delete pod life-support-monitor"
+  - level: 3
+    text: "Create new: kubectl run life-support-v2 --image=nginx"
+
+validation_timeout: 30
+max_hints: 3

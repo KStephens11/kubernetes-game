@@ -1,0 +1,37 @@
+challenge_id: "pod-basics-02"
+level: 1
+order: 2
+title: "Inspect a Running Pod"
+difficulty: "beginner"
+estimated_time: 5
+
+story_context: |
+  The monitoring pod is running, but you need to verify it's functioning correctly.
+  Use inspection commands to gather information about the pod's status and configuration.
+
+learning_objectives:
+  - Use kubectl describe command
+  - View pod logs
+  - Understand pod details
+
+initial_state:
+  resources:
+    - type: "pod"
+      name: "life-support-monitor"
+      image: "nginx"
+
+success_criteria:
+  - type: "command_executed"
+    command: "describe"
+    resource: "pod"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl describe' to inspect resources"
+  - level: 2
+    text: "Try: kubectl describe pod life-support-monitor"
+  - level: 3
+    text: "You can also check logs with: kubectl logs life-support-monitor"
+
+validation_timeout: 30
+max_hints: 3

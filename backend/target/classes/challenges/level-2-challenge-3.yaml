@@ -1,0 +1,41 @@
+challenge_id: "deployment-basics-03"
+level: 2
+order: 3
+title: "Update a Deployment"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  A security patch is available for the web application image.
+  Perform a rolling update to deploy the new version without downtime.
+
+learning_objectives:
+  - Update deployment images
+  - Use kubectl set image
+  - Understand rolling updates
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx:1.24"
+      replicas: 3
+
+success_criteria:
+  - type: "deployment_image"
+    name: "web-app"
+    image: "nginx:1.25"
+  - type: "deployment_ready"
+    name: "web-app"
+    replicas: 3
+
+hints:
+  - level: 1
+    text: "Use 'kubectl set image' to update a container image"
+  - level: 2
+    text: "Try: kubectl set image deployment/web-app nginx=nginx:1.25"
+  - level: 3
+    text: "Monitor rollout with: kubectl rollout status deployment/web-app"
+
+validation_timeout: 60
+max_hints: 3

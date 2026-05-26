@@ -1,0 +1,85 @@
+/* ============================================================
+   Terminal Styles - Kubernetes Learning Game
+   xterm.js terminal container and surrounding UI
+   ============================================================ */
+
+.terminal-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  gap: var(--spacing-sm);
+}
+
+.terminal-header-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-header-dot--red {
+  background-color: #ff5f57;
+}
+
+.terminal-header-dot--yellow {
+  background-color: #febc2e;
+}
+
+.terminal-header-dot--green {
+  background-color: #28c840;
+}
+
+.terminal-header-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.terminal-container {
+  flex: 1;
+  padding: var(--spacing-sm);
+  overflow: hidden;
+  min-height: 400px;
+}
+
+/* xterm.js overrides */
+.xterm {
+  height: 100%;
+}
+
+.xterm-viewport {
+  overflow-y: auto !important;
+}
+
+.terminal-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.terminal-status-connected {
+  color: var(--color-accent-green);
+}
+
+.terminal-status-disconnected {
+  color: var(--color-accent-red);
+}

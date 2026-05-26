@@ -1,0 +1,94 @@
+/* ============================================================
+   Global Theme - Kubernetes Learning Game
+   Dark terminal-inspired theme
+   ============================================================ */
+
+:root {
+  /* Color palette */
+  --color-bg-primary: #1e1e1e;
+  --color-bg-secondary: #252526;
+  --color-bg-tertiary: #2d2d30;
+  --color-bg-panel: #1a1a2e;
+
+  --color-text-primary: #d4d4d4;
+  --color-text-secondary: #9d9d9d;
+  --color-text-muted: #6a6a6a;
+
+  --color-accent-cyan: #11a8cd;
+  --color-accent-green: #0dbc79;
+  --color-accent-yellow: #e5e510;
+  --color-accent-red: #cd3131;
+  --color-accent-magenta: #bc3fbc;
+  --color-accent-blue: #2472c8;
+
+  /* Terminal colors */
+  --terminal-bg: #1e1e1e;
+  --terminal-fg: #d4d4d4;
+  --terminal-cursor: #00ff00;
+  --terminal-selection: #264f78;
+
+  /* Typography */
+  --font-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: 14px;
+  --font-size-sm: 12px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border */
+  --border-color: #3e3e42;
+  --border-radius: 4px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

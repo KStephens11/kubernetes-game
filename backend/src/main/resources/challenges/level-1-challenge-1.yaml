@@ -1,0 +1,36 @@
+challenge_id: "pod-basics-01"
+level: 1
+order: 1
+title: "Deploy Your First Pod"
+difficulty: "beginner"
+estimated_time: 5
+
+story_context: |
+  Welcome aboard the Kubernetes Station. The life support monitoring system is offline.
+  Your first task as the new cluster operator is to deploy a monitoring pod to get systems back online.
+
+learning_objectives:
+  - Understand pod creation
+  - Use kubectl run command
+  - Verify pod status
+
+initial_state:
+  resources: []
+
+success_criteria:
+  - type: "pod_exists"
+    name: "life-support-monitor"
+  - type: "pod_status"
+    name: "life-support-monitor"
+    status: "Running"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl run' to create a pod"
+  - level: 2
+    text: "Try: kubectl run life-support-monitor --image=nginx"
+  - level: 3
+    text: "Check pod status with: kubectl get pods"
+
+validation_timeout: 30
+max_hints: 3

@@ -1,0 +1,41 @@
+challenge_id: "services-02"
+level: 3
+order: 2
+title: "Service Discovery"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The service is created but you need to verify it's routing traffic correctly.
+  Check that the service endpoints match the running pods.
+
+learning_objectives:
+  - Inspect service endpoints
+  - Understand service discovery
+  - Use kubectl get endpoints
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx"
+      replicas: 2
+    - type: "service"
+      name: "web-app-svc"
+      selector: "web-app"
+      port: 80
+
+success_criteria:
+  - type: "service_has_endpoints"
+    name: "web-app-svc"
+
+hints:
+  - level: 1
+    text: "Check service endpoints to verify pod connectivity"
+  - level: 2
+    text: "Try: kubectl get endpoints web-app-svc"
+  - level: 3
+    text: "If no endpoints, check that pod labels match the service selector"
+
+validation_timeout: 30
+max_hints: 3

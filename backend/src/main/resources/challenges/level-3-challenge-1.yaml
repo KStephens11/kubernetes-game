@@ -1,0 +1,40 @@
+challenge_id: "services-01"
+level: 3
+order: 1
+title: "Expose a Deployment"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The web application is running but unreachable from other systems.
+  Create a Service to expose the deployment and enable network access.
+
+learning_objectives:
+  - Understand Kubernetes Services
+  - Use kubectl expose
+  - Connect services to deployments
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx"
+      replicas: 2
+
+success_criteria:
+  - type: "service_exists"
+    name: "web-app-svc"
+  - type: "service_selector"
+    name: "web-app-svc"
+    selector: "web-app"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl expose' to create a Service from a Deployment"
+  - level: 2
+    text: "Try: kubectl expose deployment web-app --name=web-app-svc --port=80"
+  - level: 3
+    text: "Verify with: kubectl get service web-app-svc"
+
+validation_timeout: 30
+max_hints: 3

@@ -1,0 +1,33 @@
+challenge_id: "config-03"
+level: 4
+order: 3
+title: "Create a Secret"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The database password must not be stored in plain text.
+  Create a Kubernetes Secret to securely store the sensitive credentials.
+
+learning_objectives:
+  - Understand Kubernetes Secrets
+  - Create Secrets with kubectl
+  - Distinguish Secrets from ConfigMaps
+
+initial_state:
+  resources: []
+
+success_criteria:
+  - type: "secret_exists"
+    name: "db-credentials"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl create secret generic' to create a Secret"
+  - level: 2
+    text: "Try: kubectl create secret generic db-credentials --from-literal=password=s3cr3t"
+  - level: 3
+    text: "Verify with: kubectl get secret db-credentials"
+
+validation_timeout: 30
+max_hints: 3

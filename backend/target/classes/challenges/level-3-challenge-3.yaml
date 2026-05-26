@@ -1,0 +1,46 @@
+challenge_id: "services-03"
+level: 3
+order: 3
+title: "Port Forwarding"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The service is running but you need to test it locally before opening it to the network.
+  Use kubectl port-forward to access the service from your local machine.
+
+learning_objectives:
+  - Use kubectl port-forward
+  - Understand local cluster access
+  - Test services without external exposure
+
+initial_state:
+  resources:
+    - type: "deployment"
+      name: "web-app"
+      image: "nginx"
+      replicas: 1
+    - type: "service"
+      name: "web-app-svc"
+      selector: "web-app"
+      port: 80
+
+success_criteria:
+  - type: "service_exists"
+    name: "web-app-svc"
+  - type: "service_has_endpoints"
+    name: "web-app-svc"
+  - type: "command_executed"
+    command: "port-forward"
+    resource: "service"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl port-forward' to forward a local port to a service"
+  - level: 2
+    text: "Try: kubectl port-forward service/web-app-svc 8080:80"
+  - level: 3
+    text: "After running port-forward, access the service at http://localhost:8080"
+
+validation_timeout: 30
+max_hints: 3

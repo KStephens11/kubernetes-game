@@ -1,0 +1,9 @@
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/controller/GameControllerTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/service/CommandServiceTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/service/GameServiceTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/integration/GameFlowIntegrationTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/service/ValidationServiceTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/controller/TerminalWebSocketControllerTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/K8sGameApplicationTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/service/SafetyGuardTest.java
+/home/kevin/Downloads/new-kubernetes-game (2)/new-kubernetes-game/backend/src/test/java/com/k8sgame/service/NamespaceServiceTest.java

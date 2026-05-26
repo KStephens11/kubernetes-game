@@ -1,0 +1,40 @@
+challenge_id: "debug-01"
+level: 5
+order: 1
+title: "Fix a Broken Pod"
+difficulty: "advanced"
+estimated_time: 10
+
+story_context: |
+  An alert fires: the sensor pod is stuck in ImagePullBackOff.
+  Someone deployed it with a typo in the image name. Find the problem and fix it.
+
+learning_objectives:
+  - Diagnose ImagePullBackOff errors
+  - Use kubectl describe to find root cause
+  - Delete and recreate a pod with the correct image
+
+initial_state:
+  resources:
+    - type: "pod"
+      name: "sensor-pod"
+      image: "nginxx"
+
+success_criteria:
+  - type: "pod_not_exists"
+    name: "sensor-pod"
+  - type: "pod_exists"
+    name: "sensor-pod-fixed"
+  - type: "pod_running"
+    name: "sensor-pod-fixed"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl describe pod' to find out why the pod is failing"
+  - level: 2
+    text: "Delete the broken pod: kubectl delete pod sensor-pod"
+  - level: 3
+    text: "Create a fixed pod: kubectl run sensor-pod-fixed --image=nginx"
+
+validation_timeout: 60
+max_hints: 3

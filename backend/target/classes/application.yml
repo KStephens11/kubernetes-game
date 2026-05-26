@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: k8s-game-backend
+
+server:
+  port: 8080
+
+# Kubernetes cluster configuration
+kubernetes:
+  # Path to kubeconfig file; falls back to ~/.kube/config if env var not set
+  config-path: ${KUBECONFIG:~/.kube/config}
+  # Prefix used for all player-specific namespaces
+  namespace-prefix: game-session-
+  resource-quotas:
+    pods: 10
+    services: 5
+    pvc: 3
+    cpu: "2"
+    memory: "4Gi"
+
+# Game engine settings
+game:
+  # Session inactivity timeout in seconds (1 hour)
+  session-timeout: 3600
+  # Maximum number of hints a player can request per challenge
+  max-hints-per-challenge: 3
+  # Seconds to wait for cluster state to settle before re-validating
+  validation-timeout: 30
+
+# Logging configuration
+logging:
+  level:
+    com.k8sgame: DEBUG
+    io.fabric8: INFO
+    org.springframework.web: INFO
+    org.springframework.websocket: DEBUG
+    org.springframework.messaging: DEBUG

@@ -1,0 +1,33 @@
+challenge_id: "config-01"
+level: 4
+order: 1
+title: "Create a ConfigMap"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The application needs external configuration to connect to the database.
+  Store the configuration data in a ConfigMap so it can be injected into pods.
+
+learning_objectives:
+  - Understand ConfigMaps
+  - Create ConfigMaps with kubectl
+  - Store non-sensitive configuration data
+
+initial_state:
+  resources: []
+
+success_criteria:
+  - type: "configmap_exists"
+    name: "app-config"
+
+hints:
+  - level: 1
+    text: "Use 'kubectl create configmap' to create a ConfigMap"
+  - level: 2
+    text: "Try: kubectl create configmap app-config --from-literal=DB_HOST=localhost"
+  - level: 3
+    text: "Verify with: kubectl get configmap app-config"
+
+validation_timeout: 30
+max_hints: 3

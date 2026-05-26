@@ -1,0 +1,36 @@
+challenge_id: "deployment-basics-01"
+level: 2
+order: 1
+title: "Create a Deployment"
+difficulty: "intermediate"
+estimated_time: 7
+
+story_context: |
+  The station is stable, but single pods aren't resilient enough.
+  Deploy a web application using a Deployment with 3 replicas for high availability.
+
+learning_objectives:
+  - Understand deployments
+  - Create deployments with kubectl
+  - Verify replica count
+
+initial_state:
+  resources: []
+
+success_criteria:
+  - type: "deployment_exists"
+    name: "web-app"
+  - type: "deployment_ready"
+    name: "web-app"
+    replicas: 3
+
+hints:
+  - level: 1
+    text: "Use 'kubectl create deployment' to create a deployment"
+  - level: 2
+    text: "Try: kubectl create deployment web-app --image=nginx --replicas=3"
+  - level: 3
+    text: "Check status with: kubectl get deployments"
+
+validation_timeout: 45
+max_hints: 3

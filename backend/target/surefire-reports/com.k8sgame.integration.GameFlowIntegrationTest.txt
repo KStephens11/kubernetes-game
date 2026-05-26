@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.k8sgame.integration.GameFlowIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.68 s -- in com.k8sgame.integration.GameFlowIntegrationTest
