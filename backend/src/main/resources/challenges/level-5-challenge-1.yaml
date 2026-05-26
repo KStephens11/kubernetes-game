@@ -10,9 +10,9 @@ story_context: |
   Someone deployed it with a typo in the image name. Find the problem and fix it.
 
 learning_objectives:
-  - Diagnose ImagePullBackOff errors
-  - Use kubectl describe to find root cause
-  - Delete and recreate a pod with the correct image
+  - Spot an ImagePullBackOff error and understand what it means
+  - Use kubectl describe to find the root cause of a failing pod
+  - Fix the problem by recreating the pod with the correct image
 
 initial_state:
   resources:

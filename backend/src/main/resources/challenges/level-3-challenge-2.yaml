@@ -10,9 +10,9 @@ story_context: |
   Check that the service endpoints match the running pods.
 
 learning_objectives:
-  - Inspect service endpoints
-  - Understand service discovery
-  - Use kubectl get endpoints
+  - Check which pods a service is routing to with kubectl get endpoints
+  - Spot a broken service by looking at its endpoints
+  - Learn how Kubernetes uses labels to connect services to pods
 
 initial_state:
   resources:

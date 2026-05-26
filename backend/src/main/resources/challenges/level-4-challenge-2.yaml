@@ -10,9 +10,9 @@ story_context: |
   Create a pod that reads its configuration from the ConfigMap as environment variables.
 
 learning_objectives:
-  - Inject ConfigMap data as environment variables
-  - Use envFrom in pod spec
-  - Understand configuration injection patterns
+  - Mount a ConfigMap as environment variables inside a pod
+  - Use envFrom to inject all ConfigMap keys at once
+  - Verify that the pod can read the injected configuration
 
 initial_state:
   resources:

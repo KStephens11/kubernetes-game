@@ -10,9 +10,9 @@ story_context: |
   Scale the deployment to 5 replicas to handle the additional load.
 
 learning_objectives:
-  - Scale deployments
-  - Use kubectl scale command
-  - Understand horizontal scaling
+  - Scale a deployment up and down with kubectl scale
+  - Watch new pods appear as replicas increase
+  - Learn how horizontal scaling handles more traffic
 
 initial_state:
   resources:

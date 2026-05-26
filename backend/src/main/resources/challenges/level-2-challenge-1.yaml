@@ -10,9 +10,9 @@ story_context: |
   Deploy a web application using a Deployment with 3 replicas for high availability.
 
 learning_objectives:
-  - Understand deployments
-  - Create deployments with kubectl
-  - Verify replica count
+  - Create a deployment with kubectl create deployment
+  - See how a deployment manages multiple pod replicas
+  - Learn why deployments are preferred over bare pods
 
 initial_state:
   resources: []

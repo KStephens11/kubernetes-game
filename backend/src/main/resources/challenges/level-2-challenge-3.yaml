@@ -10,9 +10,9 @@ story_context: |
   Perform a rolling update to deploy the new version without downtime.
 
 learning_objectives:
-  - Update deployment images
-  - Use kubectl set image
-  - Understand rolling updates
+  - Update a deployment's container image with kubectl set image
+  - Watch a rolling update replace pods one by one
+  - Learn how rolling updates keep your app available during changes
 
 initial_state:
   resources:

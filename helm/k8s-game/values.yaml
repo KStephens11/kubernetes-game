@@ -1,0 +1,68 @@
+# Global image settings
+image:
+  registry: ""          # e.g. "ghcr.io/myorg/" — leave empty for local images
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+
+# Backend (Spring Boot)
+backend:
+  image:
+    repository: k8s-game-backend
+    tag: latest
+  replicaCount: 1
+  port: 8080
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  # Spring Boot / game config overrides (merged into a ConfigMap)
+  config:
+    SPRING_PROFILES_ACTIVE: prod
+    KUBERNETES_NAMESPACE_PREFIX: "game-session-"
+    GAME_SESSION_TIMEOUT: "3600"
+    GAME_MAX_HINTS_PER_CHALLENGE: "3"
+  # Kubernetes RBAC — the backend needs to create/delete namespaces and resources
+  serviceAccount:
+    create: true
+    name: ""            # auto-generated from release name if empty
+  rbac:
+    create: true
+  hpa:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 70
+
+# Frontend (nginx + React SPA)
+frontend:
+  image:
+    repository: k8s-game-frontend
+    tag: latest
+  replicaCount: 1
+  port: 80
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+  hpa:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 70
+
+# Ingress
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+  host: k8s-game.local
+  tls:
+    enabled: false
+    secretName: k8s-game-tls

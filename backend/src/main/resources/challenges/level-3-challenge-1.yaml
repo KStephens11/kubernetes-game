@@ -10,9 +10,9 @@ story_context: |
   Create a Service to expose the deployment and enable network access.
 
 learning_objectives:
-  - Understand Kubernetes Services
-  - Use kubectl expose
-  - Connect services to deployments
+  - Expose a deployment as a service with kubectl expose
+  - Connect a service to the pods behind it
+  - Learn how services give deployments a stable network address
 
 initial_state:
   resources:

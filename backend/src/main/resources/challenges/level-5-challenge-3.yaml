@@ -10,9 +10,9 @@ story_context: |
   Adjust the resource requests so the pod can run within the allowed limits.
 
 learning_objectives:
-  - Understand resource requests and limits
-  - Diagnose scheduling failures
-  - Fix resource configuration to fit quota
+  - Read a pod's resource requests and limits in its spec
+  - Diagnose why a pod is stuck in Pending due to insufficient resources
+  - Reduce the resource requests so the pod can be scheduled
 
 initial_state:
   resources:

@@ -10,9 +10,9 @@ story_context: |
   Delete the old pod and create a new one with a different name.
 
 learning_objectives:
-  - Delete pods with kubectl delete
-  - Understand pod lifecycle
-  - Create replacement pods
+  - Delete a pod with kubectl delete
+  - Replace a failed pod with a new one
+  - Learn how pods move through their lifecycle
 
 initial_state:
   resources:

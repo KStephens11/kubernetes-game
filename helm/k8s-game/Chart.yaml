@@ -1,0 +1,12 @@
+apiVersion: v2
+name: k8s-game
+description: Kubernetes Learning Game — interactive terminal-based Kubernetes education platform
+type: application
+version: 0.1.0
+appVersion: "0.0.1"
+keywords:
+  - kubernetes
+  - education
+  - game
+maintainers:
+  - name: k8s-game team

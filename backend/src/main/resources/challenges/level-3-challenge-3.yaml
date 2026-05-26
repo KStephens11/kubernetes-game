@@ -10,9 +10,9 @@ story_context: |
   Use kubectl port-forward to access the service from your local machine.
 
 learning_objectives:
-  - Use kubectl port-forward
-  - Understand local cluster access
-  - Test services without external exposure
+  - Forward a service port to your local machine with kubectl port-forward
+  - Test a service without exposing it to the outside world
+  - Learn when port-forwarding is useful for debugging
 
 initial_state:
   resources:

@@ -10,9 +10,9 @@ story_context: |
   Your first task as the new cluster operator is to deploy a monitoring pod to get systems back online.
 
 learning_objectives:
-  - Understand pod creation
-  - Use kubectl run command
-  - Verify pod status
+  - Create a pod using kubectl run
+  - Check that a pod is running with kubectl get pods
+  - Learn what a pod is and why it matters
 
 initial_state:
   resources: []

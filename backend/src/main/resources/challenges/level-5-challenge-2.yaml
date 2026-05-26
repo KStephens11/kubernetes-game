@@ -10,9 +10,9 @@ story_context: |
   Traffic cannot reach the pods. Investigate and fix the selector mismatch.
 
 learning_objectives:
-  - Diagnose service selector mismatches
-  - Inspect service and pod labels
-  - Fix service configuration
+  - Find a service that isn't routing traffic by checking its endpoints
+  - Compare service selectors and pod labels to spot a mismatch
+  - Fix the service configuration so traffic reaches the right pods
 
 initial_state:
   resources:

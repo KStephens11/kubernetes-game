@@ -10,9 +10,9 @@ story_context: |
   Store the configuration data in a ConfigMap so it can be injected into pods.
 
 learning_objectives:
-  - Understand ConfigMaps
-  - Create ConfigMaps with kubectl
-  - Store non-sensitive configuration data
+  - Create a ConfigMap to store non-sensitive configuration data
+  - Learn why keeping config separate from your container image matters
+  - Inspect a ConfigMap's contents with kubectl describe
 
 initial_state:
   resources: []

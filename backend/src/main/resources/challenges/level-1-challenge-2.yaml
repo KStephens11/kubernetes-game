@@ -10,9 +10,9 @@ story_context: |
   Use inspection commands to gather information about the pod's status and configuration.
 
 learning_objectives:
-  - Use kubectl describe command
-  - View pod logs
-  - Understand pod details
+  - Inspect a pod's details with kubectl describe
+  - Read pod logs with kubectl logs
+  - Identify what information each command reveals
 
 initial_state:
   resources:

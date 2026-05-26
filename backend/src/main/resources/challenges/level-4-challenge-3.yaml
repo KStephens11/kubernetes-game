@@ -10,9 +10,9 @@ story_context: |
   Create a Kubernetes Secret to securely store the sensitive credentials.
 
 learning_objectives:
-  - Understand Kubernetes Secrets
-  - Create Secrets with kubectl
-  - Distinguish Secrets from ConfigMaps
+  - Create a Secret to store sensitive data like passwords and tokens
+  - Learn how Secrets differ from ConfigMaps and why that matters
+  - Reference a Secret in a pod without hardcoding credentials
 
 initial_state:
   resources: []
