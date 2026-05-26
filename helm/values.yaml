@@ -1,0 +1,48 @@
+backend:
+  image:
+    repository: k8s-game-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 8080
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  env:
+    KUBECONFIG: ""          # leave empty to use in-cluster config
+    NAMESPACE_PREFIX: "game-session-"
+    SESSION_TIMEOUT: "3600"
+    MAX_HINTS: "3"
+
+frontend:
+  image:
+    repository: k8s-game-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 80
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+ingress:
+  enabled: false
+  className: nginx
+  host: k8s-game.local
+  tls: false
+
+# The backend ServiceAccount needs cluster-wide permissions to manage player namespaces.
+rbac:
+  create: true

@@ -147,6 +147,26 @@ public class ValidationService {
     }
 
     /**
+     * Checks that a deployment with the given name exists in the namespace.
+     */
+    public boolean checkDeploymentExists(String namespace, String deploymentName) {
+        return kubernetesClient.apps().deployments().inNamespace(namespace).withName(deploymentName).get() != null;
+    }
+
+    /**
+     * Checks that a deployment's first container uses the image specified by the {@code image} criterion field.
+     */
+    public boolean checkDeploymentImage(String namespace, String deploymentName, Map<String, Object> criterion) {
+        var dep = kubernetesClient.apps().deployments().inNamespace(namespace).withName(deploymentName).get();
+        if (dep == null || dep.getSpec() == null || dep.getSpec().getTemplate() == null) return false;
+        String expectedImage = (String) criterion.get("image");
+        if (expectedImage == null) return true;
+        var containers = dep.getSpec().getTemplate().getSpec().getContainers();
+        return containers != null && containers.stream()
+                .anyMatch(c -> expectedImage.equals(c.getImage()));
+    }
+
+    /**
      * Checks that a ConfigMap with the given name exists in the namespace.
      */
     public boolean checkConfigMapExists(String namespace, String configMapName) {

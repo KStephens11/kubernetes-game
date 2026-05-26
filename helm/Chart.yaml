@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kubernetes-game
+description: Kubernetes Learning Game — backend (Spring Boot) + frontend (React/nginx)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-backend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "kubernetes-game.labels" . | nindent 4 }}
+    {{- include "kubernetes-game.backend.selectorLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "kubernetes-game.backend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "kubernetes-game.backend.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Release.Name }}-backend
+      containers:
+        - name: backend
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NAMESPACE_PREFIX
+              value: {{ .Values.backend.env.NAMESPACE_PREFIX | quote }}
+            - name: SESSION_TIMEOUT
+              value: {{ .Values.backend.env.SESSION_TIMEOUT | quote }}
+            - name: MAX_HINTS
+              value: {{ .Values.backend.env.MAX_HINTS | quote }}
+            {{- if .Values.backend.env.KUBECONFIG }}
+            - name: KUBECONFIG
+              value: {{ .Values.backend.env.KUBECONFIG | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 40
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-backend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "kubernetes-game.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.backend.service.type }}
+  selector:
+    {{- include "kubernetes-game.backend.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: {{ .Values.backend.service.port }}
+      targetPort: 8080
+      protocol: TCP

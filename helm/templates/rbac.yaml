@@ -1,0 +1,35 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-backend
+  labels:
+    {{- include "kubernetes-game.labels" . | nindent 4 }}
+rules:
+  # Manage player namespaces
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list", "create", "delete"]
+  # Manage resources within player namespaces
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps", "secrets", "resourcequotas", "endpoints"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "replicasets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-backend
+  labels:
+    {{- include "kubernetes-game.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-backend
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Release.Name }}-backend
+    namespace: {{ .Release.Namespace }}
+{{- end }}
